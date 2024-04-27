@@ -19,8 +19,7 @@ public class DistanceServiceImpl implements DistanceService {
                             Math.sin(dLon/2) * Math.sin(dLon/2);
 
             double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        DistanceInfo distanceInfo = new DistanceInfo(earthRadius * c);
-        return distanceInfo;
+        return new DistanceInfo(earthRadius * c);
 
     }
 }
