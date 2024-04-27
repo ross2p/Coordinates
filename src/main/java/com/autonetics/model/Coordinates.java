@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Coord {
+public class Coordinates {
     @JsonProperty("lat")
     private double latitude;
     @JsonProperty("lon")

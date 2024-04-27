@@ -1,6 +1,6 @@
 package com.autonetics.controller;
 
-import com.autonetics.model.Coord;
+import com.autonetics.model.Coordinates;
 import com.autonetics.model.weather.GeneralWeatherInfo;
 import com.autonetics.service.WeatherService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class WeatherControler {
     private final WeatherService weatherService;
 
     @RequestMapping
-    public GeneralWeatherInfo getWeather(@RequestBody Coord coords) throws IOException {
+    public GeneralWeatherInfo getWeather(@RequestBody Coordinates coords) throws IOException {
         return weatherService.getWeather(coords);
     }
 }

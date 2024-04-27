@@ -1,7 +1,7 @@
 package com.autonetics.controller;
 
 
-import com.autonetics.model.Coord;
+import com.autonetics.model.Coordinates;
 import com.autonetics.model.DistanceInfo;
 import com.autonetics.service.DistanceService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import java.util.List;
 public class DistanceController {
     private final DistanceService distanceService;
     @RequestMapping
-    public DistanceInfo getDistance(@RequestBody List<Coord> coords) {
+    public DistanceInfo getDistance(@RequestBody List<Coordinates> coords) {
         return distanceService.calculateDistance(coords.get(0), coords.get(1));
     }
 }
