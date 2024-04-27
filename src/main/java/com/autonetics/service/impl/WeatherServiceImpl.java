@@ -1,7 +1,7 @@
 package com.autonetics.service.impl;
 
 import com.autonetics.model.Coord;
-import com.autonetics.model.GeneralWeatherInfo;
+import com.autonetics.model.weather.GeneralWeatherInfo;
 import com.autonetics.service.WeatherService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;

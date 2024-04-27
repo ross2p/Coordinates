@@ -1,9 +1,8 @@
-package com.autonetics.model;
+package com.autonetics.model.weather;
 
+import com.autonetics.model.Coord;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,6 +26,4 @@ public class GeneralWeatherInfo {
     private Long id;
     private String name;
     private int cod;
-
-
 }

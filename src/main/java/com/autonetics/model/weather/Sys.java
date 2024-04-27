@@ -1,4 +1,4 @@
-package com.autonetics.model;
+package com.autonetics.model.weather;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.AllArgsConstructor;
@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Wind {
-    double speed;
-    double deg;
-    double gust;
+public class Sys {
+    int type;
+    int id;
+    String country;
+    int sunrise;
+    int sunset;
 }

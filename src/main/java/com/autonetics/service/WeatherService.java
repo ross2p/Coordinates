@@ -1,7 +1,7 @@
 package com.autonetics.service;
 
 import com.autonetics.model.Coord;
-import com.autonetics.model.GeneralWeatherInfo;
+import com.autonetics.model.weather.GeneralWeatherInfo;
 
 import java.io.IOException;
 

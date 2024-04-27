@@ -1,7 +1,7 @@
 package com.autonetics.controller;
 
 import com.autonetics.model.Coord;
-import com.autonetics.model.GeneralWeatherInfo;
+import com.autonetics.model.weather.GeneralWeatherInfo;
 import com.autonetics.service.WeatherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,8 +15,8 @@ import java.io.IOException;
 public class WeatherControler {
     private final WeatherService weatherService;
 
-    @RequestMapping("/temperature")
-    public GeneralWeatherInfo getTemperature(@RequestBody Coord coords) throws IOException {
+    @RequestMapping
+    public GeneralWeatherInfo getWeather(@RequestBody Coord coords) throws IOException {
         return weatherService.getWeather(coords);
     }
 }
