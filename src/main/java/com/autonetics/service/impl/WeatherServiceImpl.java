@@ -4,6 +4,7 @@ import com.autonetics.model.Coordinates;
 import com.autonetics.model.weather.GeneralWeatherInfo;
 import com.autonetics.service.WeatherService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import okhttp3.OkHttpClient;
@@ -18,31 +19,36 @@ public class WeatherServiceImpl implements WeatherService {
      * API key for OpenWeatherMap.
      * <a href="https://home.openweathermap.org/api_keys">...</a>"
      */
-    private static final String API_KEY = "4e044df2a09db8e3c728b8de968aabc4";
+    @Value("${weather.api.key}")
+    private String api_key;
     /**
      * Base URL for OpenWeatherMap API.
      */
-    private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
+    @Value("${weather.api.url}")
+    private String baseUrl;
     /**
      * Output language.
      */
-    private static final String LANG = "en";
+    @Value("${weather.api.lang}")
+    private String lang;
     /**
      * Temperature is available in Fahrenheit, Celsius and Kelvin units.
      */
-    private static final String UNITS = "metric";
+    @Value("${weather.api.units}")
+    private String units;
 
     @Override
     public GeneralWeatherInfo getWeather(Coordinates coords) throws IOException {
+        System.out.println("baseUrl: " + baseUrl);
         OkHttpClient client = new OkHttpClient();
 
         String url = String.format("%s?lat=%s&lon=%s&lang=%s&units=%s&appid=%s",
-                BASE_URL,
+                baseUrl,
                 coords.getLatitude(),
                 coords.getLongitude(),
-                LANG,
-                UNITS,
-                API_KEY);
+                lang,
+                units,
+                api_key);
 
         Request request = new Request.Builder()
                 .url(url)
