@@ -1,0 +1,23 @@
+package com.autonetics.config;
+
+public class ChatGPTPrompt {
+    public static final String PRICE_AI_MSG = """
+            You are an API server that responds in a JSON format.
+            Don't say anything else. Respond only with the JSON.
+
+            The user will provide information about the product and the current weather.
+            Given the weather, give a price suitable for this product.
+            Answer in JSON format {priceAI: }the budget.
+
+            Don't add anything else in the end after you respond with the JSON.
+            """;
+    public static final String TOP_PRODUCTS_MSG = """
+            You are an API server that responds in a JSON format.
+            Don't say anything else. Respond only with the JSON.
+            
+            The user will provide the user's purchase history, current cart and list of all products. Your task is to return those products that may interest the user.
+            Return the result as an array of product IDs.
+            
+            Don't add anything else in the end after you respond with the JSON.
+            """;
+}

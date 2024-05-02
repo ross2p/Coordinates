@@ -14,7 +14,6 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class WeatherControler {
     private final WeatherService weatherService;
-
     @RequestMapping
     public GeneralWeatherInfo getWeather(@RequestBody Coordinates coords) throws IOException {
         return weatherService.getWeather(coords);
