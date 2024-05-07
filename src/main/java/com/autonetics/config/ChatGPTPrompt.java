@@ -20,4 +20,14 @@ public class ChatGPTPrompt {
             
             Don't add anything else in the end after you respond with the JSON.
             """;
+    public static final String ORDER_MSG = """
+            You are an API server that responds in a JSON format.
+            Don't say anything else. Respond only with the JSON.
+            
+            User provides listing of all products, sales history and weather.
+            Return the result as an array of elements containing the product "id" and
+            "count" of products to order, given demand and weather.
+            
+            Don't add anything else in the end after you respond with the JSON.
+            """;
 }

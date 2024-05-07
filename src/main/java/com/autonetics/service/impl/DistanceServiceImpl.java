@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DistanceServiceImpl implements DistanceService {
+    private final static double EARTH_RADIUS = 6371;
     @Override
     public DistanceInfo calculateDistance(Coordinates from, Coordinates to) {
-            double earthRadius = 6371;
 
             double dLat = Math.toRadians(to.getLatitude() - from.getLatitude());
             double dLon = Math.toRadians(to.getLongitude() - from.getLongitude());
@@ -19,6 +19,6 @@ public class DistanceServiceImpl implements DistanceService {
                             Math.sin(dLon/2) * Math.sin(dLon/2);
 
             double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        return new DistanceInfo(earthRadius * c);
+        return new DistanceInfo(EARTH_RADIUS * c);
     }
 }

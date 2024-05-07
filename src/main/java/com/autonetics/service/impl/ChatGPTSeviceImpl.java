@@ -20,9 +20,12 @@ import java.util.List;
 
 @Service
 public class ChatGPTSeviceImpl implements ChatGPTService {
-    private static OpenAiService openAiService;
+    private OpenAiService openAiService;
+//    @Autowired
+//    private GoodsMapper goodsMapper;
+
     @Value("${openai.api.key}")
-    private static String apiKey;
+    private String apiKey;
 
     private static final int apiTimeout = 10;
     private static final String GPT_MODEL = "gpt-3.5-turbo";
@@ -32,7 +35,6 @@ public class ChatGPTSeviceImpl implements ChatGPTService {
         System.out.println(apiKey);
         openAiService = new OpenAiService(apiKey,
                 Duration.ofSeconds(apiTimeout));
-        System.out.println("Connected to the OpenAI API");
     }
 
     private String sendMsg(String systemMSG, String userMSG) {
@@ -55,16 +57,31 @@ public class ChatGPTSeviceImpl implements ChatGPTService {
     }
 
     public Goods sendPriceAIMsg(Goods goods, GeneralWeatherInfo generalWeatherInfo) {
-        String userMSg = "My goods is "+ goods.toString() + " and the weather is " + generalWeatherInfo.toString();
+//        GoodsDTO goodsDTO =  goodsMapper.toDTO(goods);
+        String userMSg = "My goods is "+ goods + " and the weather is " + generalWeatherInfo.toString();
         String response = sendMsg(ChatGPTPrompt.PRICE_AI_MSG, userMSg);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             JsonNode jsonNode = objectMapper.readTree(response);
             double priceAI = jsonNode.get("priceAI").asDouble();
-            goods.setPriceOut(priceAI);
+            goods.setPriceAI(priceAI);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return goods;
+    }
+    public static void main(String[] args) throws IOException {
+        WeatherServiceImpl weatherService = new WeatherServiceImpl();
+        Goods goods = new Goods();
+        goods.setName("Beer");
+        goods.setPriceIn(100);
+        goods.setPriceOut(80);
+        GeneralWeatherInfo generalWeatherInfo = weatherService.getWeather(new Coordinates(50.4547, 30.5238));
+
+
+        ChatGPTSeviceImpl chatGPTSevice = new ChatGPTSeviceImpl();
+        chatGPTSevice.apiKey = "sk-proj-SHyWg35xyKiAKKqyJ48wT3BlbkFJuI8LHq1FPURtnk3IEYCW";
+        chatGPTSevice.initGptService();
+        System.out.println(chatGPTSevice.sendPriceAIMsg(goods, generalWeatherInfo));
     }
 }
